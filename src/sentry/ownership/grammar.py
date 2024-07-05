@@ -131,7 +131,7 @@ class Matcher(namedtuple("Matcher", "type pattern")):
 
     @staticmethod
     def find_in_app_stack_frames(data: PathSearchable) -> Sequence[Mapping[str, Any]]:
-        return [frame for frame in find_stack_frames if frame.get("in_app")]
+        return [frame for frame in find_stack_frames(data) if frame.get("in_app") != False]
 
     def test(self, data: PathSearchable) -> bool:
         if self.type == URL:
